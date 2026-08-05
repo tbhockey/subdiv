@@ -92,14 +92,6 @@
         line-height: 1;
         text-wrap: balance;
       }
-      .tagline {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.5;
-        max-width: 42ch;
-      }
-
       /* ---- Tempo control ---- */
       .tempo {
         padding: 20px 22px;
@@ -154,13 +146,6 @@
       #bpm::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
       #bpm:focus-visible { outline: none; }
       .stepper:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(49,217,192,0.18); }
-      .unit-suffix {
-        font-family: ui-monospace, Menlo, monospace;
-        font-size: 13px;
-        color: var(--faint);
-        letter-spacing: 0.14em;
-        align-self: center;
-      }
       .tap-btn {
         margin-left: auto;
         display: flex;
@@ -181,12 +166,6 @@
         font-weight: 700;
         font-size: 15px;
         letter-spacing: 0.16em;
-      }
-      .tap-btn .hint {
-        font-size: 10px;
-        color: var(--faint);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
       }
       .tap-btn:hover { border-color: var(--accent-dim); }
       .tap-btn:active { transform: scale(0.96); }
@@ -231,13 +210,6 @@
         letter-spacing: -0.01em;
         white-space: nowrap;
       }
-      .ratio {
-        font-family: ui-monospace, Menlo, monospace;
-        font-size: 11px;
-        color: var(--faint);
-        letter-spacing: 0.02em;
-      }
-
       .bpm-cell { text-align: right; }
       .bpm-val {
         font-size: 22px;
@@ -335,13 +307,12 @@
       </header>
 
       <section class="tempo">
-        <span class="tempo-label">Song Tempo</span>
+        <span class="tempo-label">Song Tempo (BPM)</span>
         <div class="stepper">
           <button type="button" id="down" aria-label="Decrease tempo">–</button>
           <input id="bpm" class="mono" type="number" inputmode="numeric" min="20" max="400" step="1" value="120" aria-label="Song tempo in BPM">
           <button type="button" id="up" aria-label="Increase tempo">+</button>
         </div>
-        <span class="unit-suffix">BPM</span>
         <button type="button" class="tap-btn" id="tap">
           <span class="k">TAP</span>
         </button>
@@ -376,21 +347,14 @@
         var bpmInput = document.getElementById("bpm");
         var rows = [];
 
-        function ratioLabel(m) {
-          if (m === 2 / 3) return "×0.667";
-          if (m === 1 / 3) return "×0.333";
-          if (m === 1 / 6) return "×0.167";
-          return "×" + m;
-        }
-
-        SUBDIVISIONS.forEach(function (sd, i) {
+        SUBDIVISIONS.forEach(function (sd) {
           var row = document.createElement("div");
           row.className = "row";
           row.innerHTML =
             '<div class="name-cell">' +
               '<span class="led"></span>' +
               '<span class="name-text">' +
-                '<span class="name">' + sd.name + '</span><br>' +
+                '<span class="name">' + sd.name + '</span>' +
               '</span>' +
             '</div>' +
             '<div class="bpm-cell"><span class="bpm-val">0</span><span class="u">bpm</span></div>' +
