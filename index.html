@@ -202,8 +202,6 @@
         background: var(--row-hi);
         box-shadow: inset 0 0 0 1px var(--line-strong);
       }
-      /* Active rows carry their own outline, so drop the shared divider on
-         either side of one — including between two adjacent active rows. */
       .row.active + .row,
       .row + .row.active { border-top-color: transparent; }
 
@@ -274,7 +272,6 @@
         color: #04110f;
       }
 
-      /* ---- Transport (appears while anything is sounding) ---- */
       .transport {
         display: flex;
         align-items: center;
@@ -357,8 +354,6 @@
       (function () {
         "use strict";
 
-        /* freq: each row clicks at its own pitch so layered subdivisions stay
-           tellable apart by ear — longer note values sit lower. */
         var SUBDIVISIONS = [
           { name: "Half note",      mult: 2,     freq: 640 },
           { name: "Dotted quarter", mult: 1.5,   freq: 760 },
@@ -474,10 +469,7 @@
           setTimeout(function () { tapBtn.classList.remove("lit"); }, 110);
         });
 
-        /* ---------- Metronome (Web Audio, lookahead scheduler) ----------
-           Any number of rows can sound at once. They share one grid origin so
-           every subdivision phase-locks to a common downbeat, and one scheduler
-           loop services all of them. */
+        /* ---------- Metronome (Web Audio, lookahead scheduler) ---------- */
         var audioCtx = null;
         var masterGain = null;
         var playCount = 0;
@@ -581,8 +573,6 @@
           rows.forEach(function (r) { if (r.playing) r.beat = 0; });
         }
 
-        /* Coalesce bursts of tempo edits (typed digits, held steppers, tap
-           tempo) into a single re-lay once the tempo settles. */
         function scheduleReanchor() {
           if (reanchorTimer) clearTimeout(reanchorTimer);
           reanchorTimer = setTimeout(function () {
