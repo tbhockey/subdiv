@@ -328,7 +328,7 @@ h1 {
       transparent 3px
     ),
     radial-gradient(130% 130% at 50% 50%, transparent 62%, rgba(0, 0, 0, 0.32) 100%);
-  box-shadow: inset 0 0 110px 30px rgba(0, 0, 0, 0.55), inset 0 0 40px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: inset 0 0 110px 30px rgba(0, 0, 0, 0.3), inset 0 0 40px 0 rgba(0, 0, 0, 0.2);
   animation: crt-flicker 3.2s ease-in-out infinite, crt-roll 6s linear infinite;
 }
 

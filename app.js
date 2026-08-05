@@ -118,9 +118,9 @@
   var SCHEDULE_AHEAD = 0.1; // s, how far ahead to schedule audio
   var REANCHOR_DEBOUNCE = 200; // ms of tempo quiet before re-laying the grid
   var reanchorTimer = null;
-
   var transportEl = document.getElementById("transport");
   var playingCountEl = document.getElementById("playingCount");
+
   document.getElementById("stopAll").addEventListener("click", stopAll);
 
   function ensureAudio() {
